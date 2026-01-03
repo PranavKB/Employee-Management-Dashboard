@@ -3,11 +3,14 @@ import ReactDOM from 'react-dom/client';
 import App from './App';
 import 'antd/dist/reset.css';
 import { AuthProvider } from './context/AuthContext';
+import { EmployeeProvider } from './context/EmployeeContext';
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
     <AuthProvider>
-      <App />
+      <EmployeeProvider>
+        <App />
+      </EmployeeProvider>
     </AuthProvider>
   </React.StrictMode>
 )
