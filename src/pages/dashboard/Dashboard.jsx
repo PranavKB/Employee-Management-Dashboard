@@ -1,6 +1,8 @@
 import { Layout, Typography, Button } from "antd";
 import { useNavigate } from "react-router-dom";
 import { useAuth } from "../../context/AuthContext";
+import DashboardSummary from "../../components/DashboardSummary";
+import EmployeeTable from "../../components/employees/EmployeeTable";
 
 const { Header, Content } = Layout;
 const { Title } = Typography;
@@ -25,6 +27,8 @@ export const Dashboard = () => {
 
       <Content style={{ padding: 24 }}>
         <Title level={5}>Dashboard</Title>
+        <DashboardSummary />
+        <EmployeeTable />
       </Content>
     </Layout>
   );
