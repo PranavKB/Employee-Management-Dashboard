@@ -26,7 +26,6 @@ export const Dashboard = () => {
       </Header>
 
       <Content style={{ padding: 24 }}>
-        <Title level={5}>Dashboard</Title>
         <DashboardSummary />
         <EmployeeTable />
       </Content>

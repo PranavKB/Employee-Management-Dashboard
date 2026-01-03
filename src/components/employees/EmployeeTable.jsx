@@ -1,4 +1,4 @@
-import { Table } from "antd";
+import { Card, Table } from "antd";
 import { useEmployees } from "../../context/EmployeeContext";
 
 const EmployeeTable = () => {
@@ -20,7 +20,9 @@ const EmployeeTable = () => {
   ];
 
   return (
-    <Table rowKey="id" columns={columns} dataSource={employees} />
+    <Card variant="borderless" title="Employee List" style={{ marginTop: 16 }} styles={{ body: { padding: 0 } }}>
+        <Table rowKey="id" columns={columns} dataSource={employees} />
+    </Card>
   )
 }
 
