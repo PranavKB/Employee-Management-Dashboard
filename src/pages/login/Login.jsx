@@ -1,10 +1,21 @@
 import { LockOutlined, UserOutlined } from "@ant-design/icons";
 import { Card, Form, Input, Button, Typography } from "antd";
 import './Login.css';
+import { useAuth } from "../../context/AuthContext";
+import { useNavigate } from "react-router-dom";
 
 const { Title } = Typography;
 
 export const Login = () => {
+
+  const { login } = useAuth();
+  const navigate = useNavigate();
+
+  const onLogin = () => {
+    login();
+    navigate("/dashboard");
+  };
+
   return (
     <div className="login-container">
       <Card className="login-card">
@@ -12,7 +23,7 @@ export const Login = () => {
           Dashboard Login
         </Title>
 
-        <Form layout="vertical" className="login-form" name="login">
+        <Form layout="vertical" className="login-form" name="login" onFinish={onLogin}>
           <Form.Item
             label={<span className="login-label">Username</span>}
             name="username"
