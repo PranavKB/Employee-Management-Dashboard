@@ -1,8 +1,10 @@
-import { Card, Table } from "antd";
+import { Card, Input, Table } from "antd";
 import { useEmployees } from "../../context/EmployeeContext";
+import { useState } from "react";
 
 const EmployeeTable = () => {
     const { employees } = useEmployees();
+    const [filters, setFilters] = useState({ name: '' });
 
     const columns = [
     { title: "Employee ID", dataIndex: "employeeId" },
@@ -37,8 +39,35 @@ const EmployeeTable = () => {
     }
   ];
 
+  const handleNameSearch = (value) =>
+        setFilters((prev) => ({ ...prev, name: value }));
+
+  const fetchFilteredData = (data, filters) => {
+        let filteredData = [...data];
+
+        if (filters.name) {
+            filteredData = filteredData.filter((item) =>
+                item.fullName?.toLowerCase().includes(filters.name.toLowerCase())
+            );
+        }
+        
+        return filteredData;
+    };
+
+  const extraActions = () => {
+    return (
+        <Input
+            placeholder="Search Name"
+            allowClear
+            onChange={(e) => handleNameSearch(e.target.value)}
+        />
+      )
+  };
+
   return (
-    <Card variant="borderless" title="Employee List" style={{ marginTop: 16 }} styles={{ body: { padding: 0, height: 'calc(100vh - 260px)' } }}>
+    <Card variant="borderless" title="Employee List" style={{ marginTop: 16 }} styles={{ body: { padding: 0, height: 'calc(100vh - 260px)' } }}
+      extra={extraActions()}
+    >
         <Table rowKey="id" columns={columns}
           bordered size="small"
           scroll={{ x: 1500, y: 'calc(100vh - 380px)' }}
@@ -46,7 +75,7 @@ const EmployeeTable = () => {
                     showTotal: (total, range) =>
                         `${range[0]}-${range[1]} of ${total}`,
                 }}
-          dataSource={employees} />
+          dataSource={fetchFilteredData(employees, filters)} />
     </Card>
   )
 }
