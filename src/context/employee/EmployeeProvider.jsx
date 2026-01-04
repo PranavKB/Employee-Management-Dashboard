@@ -1,12 +1,14 @@
 import { useEffect, useState } from "react";
 import { EmployeeContext } from "./EmployeeContext";
 import dayjs from "dayjs";
+import { App } from "antd";
 
 export const EmployeeProvider = ({ children }) => {
   const [employees, setEmployees] = useState(() => {
     const saved = localStorage.getItem("employees");
     return saved ? JSON.parse(saved) : [];
   });
+  const { message } = App.useApp();
 
   useEffect(() => {
     fetch("https://randomuser.me/api/?results=20&nat=in")
@@ -14,9 +16,7 @@ export const EmployeeProvider = ({ children }) => {
       .then((data) => {
         const mapped = data.results.map((u) => ({
           id: u.login.uuid,
-          employeeId: `${u.name.first[0]}${u.name.last[0]}${Math.floor(
-            1000 + Math.random() * 9000
-          )}`,
+          employeeId: `${u.name.first[0]}${u.name.last[0]}${Math.floor(1000 + Math.random() * 9000)}`,
           profileImage: u.picture.large,
           fullName: `${u.name.first} ${u.name.last}`,
           gender: u.gender,
@@ -28,7 +28,8 @@ export const EmployeeProvider = ({ children }) => {
         setEmployees(mapped);
       })
       .catch((error) => {
-        console.error('Error fetching messages:', error);
+        message.error('Failed to fetch employees data');
+        console.error('Error fetching employees:', error);
       });
   }, []);
 
@@ -38,6 +39,7 @@ export const EmployeeProvider = ({ children }) => {
 
   const addEmployee = (employee) => {
     setEmployees((prev) => [...prev, employee]);
+    message.success('Employee added successfully');
   };
 
   const updateEmployee = (updatedEmployee) => {
@@ -46,10 +48,12 @@ export const EmployeeProvider = ({ children }) => {
         emp.id === updatedEmployee.id ? updatedEmployee : emp
       )
     );
+    message.success('Employee updated successfully');
   };
 
   const deleteEmployee = (id) => {
     setEmployees((prev) => prev.filter((emp) => emp.id !== id));
+    message.success('Employee deleted successfully');
   };
 
   return (
