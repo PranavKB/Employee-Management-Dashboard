@@ -1,5 +1,6 @@
 import { Form, Input, Modal, Select, DatePicker, Switch } from "antd";
 import { useEffect } from "react";
+import dayjs from "dayjs";
 
 const { Option } = Select;
 
@@ -10,7 +11,10 @@ const EmployeeForm = ({ open, onCancel, onSubmit, initialValues }) => {
     if (open) {
       if (initialValues) {
         // Edit mode
-        form.setFieldsValue(initialValues);
+        form.setFieldsValue({
+          ...initialValues,
+          dob: initialValues.dob ? dayjs(initialValues.dob) : null,
+        });
       } else {
         // Add mode
         form.resetFields();
@@ -19,7 +23,10 @@ const EmployeeForm = ({ open, onCancel, onSubmit, initialValues }) => {
   }, [open, initialValues, form]);
 
   const handleFinish = (values) => {    
-    onSubmit(values);
+    onSubmit({
+      ...values,
+      dob: values.dob?.toISOString(),
+    });
     form.resetFields();
   };
 

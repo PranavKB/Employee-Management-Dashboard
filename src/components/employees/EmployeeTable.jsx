@@ -6,7 +6,7 @@ import EmployeeForm from "./EmployeeForm";
 import DeleteButton from "../DeleteButton";
 
 const EmployeeTable = () => {
-  const { employees, updateEmployee, deleteEmployee } = useEmployees();
+  const { employees, updateEmployee, deleteEmployee, addEmployee } = useEmployees();
   const [filters, setFilters] = useState({ name: '' });
   const [openEmpModal, setOpenEmpModal] = useState(false);
   const [selectedEmployee, setSelectedEmployee] = useState(null);
@@ -65,6 +65,22 @@ const EmployeeTable = () => {
       )
   };
 
+  const onSubmitForm = (values) => {
+      if (selectedEmployee) {
+        updateEmployee({
+          ...selectedEmployee,
+          ...values,
+        });
+      } else {
+        addEmployee({
+          ...values,
+          id: crypto.randomUUID(),
+          employeeId: `EMP${Math.floor(1000 + Math.random() * 9000)}`,
+          profileImage: null,
+        });
+      }
+  }
+
   return (
     <>
       <Card variant="borderless" title="Employee List" style={{ marginTop: 16 }} styles={{ body: { padding: 0, height: 'calc(100vh - 260px)' } }}
@@ -72,7 +88,7 @@ const EmployeeTable = () => {
       >
           <Table rowKey="id" columns={tableColumns}
             bordered size="small"
-            scroll={{ x: 1500, y: 'calc(100vh - 380px)' }}
+            scroll={{ x: 1500, y: 'calc(100vh - 350px)' }}
             pagination={{
                       showTotal: (total, range) =>
                           `${range[0]}-${range[1]} of ${total}`,
@@ -84,7 +100,7 @@ const EmployeeTable = () => {
             initialValues={selectedEmployee}
             onCancel={() => setOpenEmpModal(false)}
             onSubmit={(values) => {
-              updateEmployee(values);
+              onSubmitForm(values);
               setSelectedEmployee(null);
               setOpenEmpModal(false);
             }}
