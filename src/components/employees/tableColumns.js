@@ -1,3 +1,4 @@
+import dayjs from "dayjs";
 
 export const columns = [
     { title: "Employee ID", dataIndex: "employeeId" },
@@ -12,11 +13,11 @@ export const columns = [
       onFilter: (value, record) => record.gender === value,
     },
     { title: "DOB", dataIndex: "dob", 
-      render: (dob) => new Date(dob).toLocaleDateString("en-GB"),
-      sorter: (a, b) => new Date(a.dob) - new Date(b.dob)
+        render: (dob) => dob ? dayjs(dob).format("DD/MM/YYYY") : "-",
+        sorter: (a, b) => dayjs(a.dob).valueOf() - dayjs(b.dob).valueOf(),
     },
     { title: "State", dataIndex: "state",
-      sorter: (a, b) => a.state.localeCompare(b.state)
+        sorter: (a, b) => a.state.localeCompare(b.state)
      },
     {
       title: "Active", dataIndex: "isActive", 
@@ -27,8 +28,5 @@ export const columns = [
       ],
       onFilter: (value, record) => record.isActive === value,
     },
-    {
-      title: "Actions",
-    }
   ];
 

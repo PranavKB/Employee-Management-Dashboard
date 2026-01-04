@@ -1,20 +1,36 @@
 import { Form, Input, Modal, Select, DatePicker, Switch } from "antd";
+import { useEffect } from "react";
 
 const { Option } = Select;
 
-const EmployeeForm = ({ open, onCancel, onSubmit }) => {
+const EmployeeForm = ({ open, onCancel, onSubmit, initialValues }) => {
   const [form] = Form.useForm();
 
-  const handleFinish = (values) => {
+  useEffect(() => {
+    if (open) {
+      if (initialValues) {
+        // Edit mode
+        form.setFieldsValue(initialValues);
+      } else {
+        // Add mode
+        form.resetFields();
+      }
+    }
+  }, [open, initialValues, form]);
+
+  const handleFinish = (values) => {    
     onSubmit(values);
     form.resetFields();
   };
 
   return (
     <Modal
-      title="Add Employee"
+      title={initialValues ? "Edit Employee" : "Add Employee"}
       open={open}
-      onCancel={onCancel}
+      onCancel={() => {
+        form.resetFields();
+        onCancel();
+      }}
       onOk={() => form.submit()}
       okText="Save"
     >
@@ -22,8 +38,17 @@ const EmployeeForm = ({ open, onCancel, onSubmit }) => {
         form={form}
         layout="vertical"
         onFinish={handleFinish}
-        initialValues={{ isActive: true }}
       >
+        <Form.Item name="id" hidden>
+          <Input />
+        </Form.Item>
+        <Form.Item name="employeeId" hidden>
+          <Input />
+        </Form.Item>
+        <Form.Item name="profileImage" hidden>
+          <Input />
+        </Form.Item>
+
         <Form.Item
           name="fullName"
           label="Full Name"

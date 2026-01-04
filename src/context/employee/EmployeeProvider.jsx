@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { EmployeeContext } from "./EmployeeContext";
+import dayjs from "dayjs";
 
 export const EmployeeProvider = ({ children }) => {
   const [employees, setEmployees] = useState(() => {
@@ -19,7 +20,7 @@ export const EmployeeProvider = ({ children }) => {
           profileImage: u.picture.large,
           fullName: `${u.name.first} ${u.name.last}`,
           gender: u.gender,
-          dob: u.dob.date,
+          dob: dayjs(u.dob.date),
           state: u.location.state,
           isActive: Math.random() < 0.6,
         }));
