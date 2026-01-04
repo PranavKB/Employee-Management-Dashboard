@@ -1,10 +1,9 @@
 import { Avatar } from "antd";
 import { UserOutlined } from "@ant-design/icons";
-import { useEffect, useState } from "react";
+import { useEffect, useState, memo } from "react";
 
 const ProfileAvatar = ({ src, name }) => {
   const [loadedSrc, setLoadedSrc] = useState(null);
-  const [error, setError] = useState(false);
 
   useEffect(() => {
     if (!src) return;
@@ -13,7 +12,7 @@ const ProfileAvatar = ({ src, name }) => {
     img.src = src;
 
     img.onload = () => setLoadedSrc(src);
-    img.onerror = () => setError(true);
+    img.onerror = () => setLoadedSrc(null);
 
     return () => {
       img.onload = null;
@@ -24,11 +23,11 @@ const ProfileAvatar = ({ src, name }) => {
   return (
     <Avatar
       size={40}
-      src={!error ? loadedSrc : null}
+      src={loadedSrc}
       icon={<UserOutlined />}
       alt={name}
     />
   );
 };
 
-export default ProfileAvatar;
+export default memo(ProfileAvatar);

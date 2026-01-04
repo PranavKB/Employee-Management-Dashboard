@@ -1,6 +1,7 @@
 import { Form, Input, Modal, Select, DatePicker, Switch } from "antd";
 import { useEffect } from "react";
 import dayjs from "dayjs";
+import PhotoUpload from "../PhotoUpload";
 
 const { Option } = Select;
 
@@ -55,6 +56,15 @@ const EmployeeForm = ({ open, onCancel, onSubmit, initialValues }) => {
         </Form.Item>
         <Form.Item name="profileImage" hidden>
           <Input />
+        </Form.Item>
+
+        <Form.Item 
+          name="profileImage"
+          label="Profile Image"
+          valuePropName="value"
+          getValueFromEvent={(val) => val}
+          >
+          <PhotoUpload />
         </Form.Item>
 
         <Form.Item
