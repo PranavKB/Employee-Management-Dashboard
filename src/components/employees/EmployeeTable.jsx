@@ -3,9 +3,10 @@ import { useState } from "react";
 import { useEmployees } from "../../context/employee/useEmployees";
 import { columns } from "./tableColumns";
 import EmployeeForm from "./EmployeeForm";
+import DeleteButton from "../DeleteButton";
 
 const EmployeeTable = () => {
-  const { employees, updateEmployee } = useEmployees();
+  const { employees, updateEmployee, deleteEmployee } = useEmployees();
   const [filters, setFilters] = useState({ name: '' });
   const [openEmpModal, setOpenEmpModal] = useState(false);
   const [selectedEmployee, setSelectedEmployee] = useState(null);
@@ -23,7 +24,7 @@ const EmployeeTable = () => {
               >
                 Edit
               </Button>
-              <Button danger>Delete</Button>
+              <DeleteButton onDelete={() => deleteEmployee(record.id)}/>
             </Space>
           ),
         }
