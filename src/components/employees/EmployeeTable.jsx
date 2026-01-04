@@ -1,4 +1,4 @@
-import { Card, Input, Table } from "antd";
+import { Button, Card, Input, Table } from "antd";
 import { useEmployees } from "../../context/EmployeeContext";
 import { useState } from "react";
 
@@ -56,11 +56,19 @@ const EmployeeTable = () => {
 
   const extraActions = () => {
     return (
-        <Input
+      <div style={{
+                    display: 'flex',
+                }}
+        >
+          <Input
             placeholder="Search Name"
             allowClear
             onChange={(e) => handleNameSearch(e.target.value)}
         />
+        <Button type="primary" style={{ marginLeft: 8 }}>
+            Add Employee
+        </Button>
+      </div> 
       )
   };
 
