@@ -1,31 +1,17 @@
-import { Layout, Typography, Button } from "antd";
-import { useNavigate } from "react-router-dom";
-import { useAuth } from "../../context/AuthContext";
+import { Layout, Typography, Button, App } from "antd";
 import DashboardSummary from "../../components/DashboardSummary";
 import EmployeeTable from "../../components/employees/EmployeeTable";
+import AppHeader from "../../components/AppHeader";
 
-const { Header, Content } = Layout;
-const { Title } = Typography;
+const { Content } = Layout;
 
 export const Dashboard = () => {
-  const { logout } = useAuth();
-  const navigate = useNavigate();
-
-  const handleLogout = () => {
-    logout();
-    navigate("/login");
-  };
+  
 
   return (
     <Layout >
-      <Header>
-        <Title level={4}>
-          Employee Dashboard
-        </Title>
-        <Button onClick={handleLogout}>Logout</Button>
-      </Header>
-
-      <Content style={{ padding: 24 }}>
+      <AppHeader />
+      <Content style={{ padding: 16 }}>
         <DashboardSummary />
         <EmployeeTable />
       </Content>

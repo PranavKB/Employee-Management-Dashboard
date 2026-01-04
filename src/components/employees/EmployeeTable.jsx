@@ -20,8 +20,15 @@ const EmployeeTable = () => {
   ];
 
   return (
-    <Card variant="borderless" title="Employee List" style={{ marginTop: 16 }} styles={{ body: { padding: 0 } }}>
-        <Table rowKey="id" columns={columns} dataSource={employees} />
+    <Card variant="borderless" title="Employee List" style={{ marginTop: 16 }} styles={{ body: { padding: 0, height: 'calc(100vh - 260px)' } }}>
+        <Table rowKey="id" columns={columns}
+          bordered size="small"
+          scroll={{ x: 1500, y: 'calc(100vh - 380px)' }}
+          pagination={{
+                    showTotal: (total, range) =>
+                        `${range[0]}-${range[1]} of ${total}`,
+                }}
+          dataSource={employees} />
     </Card>
   )
 }
