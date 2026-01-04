@@ -4,7 +4,8 @@ import { useEmployees } from "../../context/employee/useEmployees";
 import { columns } from "./tableColumns";
 import EmployeeForm from "./EmployeeForm";
 import DeleteButton from "../DeleteButton";
-import { EditOutlined } from "@ant-design/icons";
+import { EditOutlined, PrinterOutlined } from "@ant-design/icons";
+import handlePrint from "../../print/handlePrint";
 
 const EmployeeTable = () => {
   const { employees, updateEmployee, deleteEmployee, addEmployee } = useEmployees();
@@ -15,14 +16,14 @@ const EmployeeTable = () => {
   const tableColumns = [
     ...columns,
     {
-      title: "Active",
+      title: "Active / Inactive",
       dataIndex: "isActive",
       render: (isActive, record) => (
         <Switch
           size="medium"
           checked={isActive}
-          checkedChildren="Yes"
-          unCheckedChildren="No"
+          checkedChildren="Active"
+          unCheckedChildren="Inactive"
           onChange={(checked) =>
             updateEmployee({ ...record, isActive: checked })
           }
@@ -71,6 +72,7 @@ const EmployeeTable = () => {
             allowClear
             onChange={(e) => handleNameSearch(e.target.value)}
         />
+        <Button onClick={() => handlePrint(filteredEmployees)} icon={<PrinterOutlined />}>Print</Button>
         <Button type="primary" style={{ marginLeft: 8 }}
           disabled={openEmpModal}
           onClick={() => {

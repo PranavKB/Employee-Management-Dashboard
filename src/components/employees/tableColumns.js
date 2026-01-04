@@ -20,7 +20,7 @@ export const columns = [
       }),
   },
   {
-    title: "Name",
+    title: "Full Name",
     dataIndex: "fullName",
     sorter: (a, b) =>
       (a.fullName || "").localeCompare(b.fullName || ""),
