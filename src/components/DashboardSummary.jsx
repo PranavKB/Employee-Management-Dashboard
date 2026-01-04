@@ -1,5 +1,5 @@
 import { Card, Col, Row, Statistic } from "antd";
-import { useEmployees } from "../context/EmployeeContext";
+import { useEmployees } from "../context/employee/useEmployees";
 
 const DashboardSummary = () => {
   const { employees } = useEmployees();

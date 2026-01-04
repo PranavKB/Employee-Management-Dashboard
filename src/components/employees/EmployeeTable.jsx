@@ -1,6 +1,6 @@
 import { Button, Card, Input, Table } from "antd";
-import { useEmployees } from "../../context/EmployeeContext";
 import { useState } from "react";
+import { useEmployees } from "../../context/employee/useEmployees";
 
 const EmployeeTable = () => {
     const { employees } = useEmployees();
