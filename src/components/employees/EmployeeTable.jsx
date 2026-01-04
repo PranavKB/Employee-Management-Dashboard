@@ -23,14 +23,7 @@ const EmployeeTable = () => {
   const [selectedEmployee, setSelectedEmployee] = useState(null);
 
   const tableColumns = [
-    ...columns.map(col => ({
-      ...col,
-      filteredValue: tableState.filters[col.dataIndex] || null,
-      sortOrder:
-        tableState.sorter?.field === col.dataIndex
-          ? tableState.sorter.order
-          : null,
-    })),
+    ...columns,
     {
       title: "Active / Inactive",
       dataIndex: "isActive",
