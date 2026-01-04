@@ -1,3 +1,4 @@
+import { DeleteOutlined } from "@ant-design/icons";
 import { Popconfirm, Button } from "antd";
 
 const DeleteButton = ({ onDelete }) => (
@@ -9,7 +10,7 @@ const DeleteButton = ({ onDelete }) => (
     onConfirm={onDelete}
     placement="left"
   >
-    <Button danger>Delete</Button>
+    <Button danger icon={<DeleteOutlined />} size="small">Delete</Button>
   </Popconfirm>
 );
 

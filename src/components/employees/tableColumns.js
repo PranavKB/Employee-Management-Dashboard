@@ -19,14 +19,5 @@ export const columns = [
     { title: "State", dataIndex: "state",
         sorter: (a, b) => a.state.localeCompare(b.state)
      },
-    {
-      title: "Active", dataIndex: "isActive", 
-      render: (isActive) => (isActive ? "Yes" : "No"),
-      filters: [
-          { text: "Active", value: true },
-          { text: "Inactive", value: false },
-      ],
-      onFilter: (value, record) => record.isActive === value,
-    },
   ];
 

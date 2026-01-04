@@ -1,34 +1,58 @@
-import { Button, Card, Input, Space, Table } from "antd";
+import { Button, Card, Input, Space, Switch, Table } from "antd";
 import { useState } from "react";
 import { useEmployees } from "../../context/employee/useEmployees";
 import { columns } from "./tableColumns";
 import EmployeeForm from "./EmployeeForm";
 import DeleteButton from "../DeleteButton";
+import { EditOutlined } from "@ant-design/icons";
 
 const EmployeeTable = () => {
   const { employees, updateEmployee, deleteEmployee, addEmployee } = useEmployees();
   const [filters, setFilters] = useState({ name: '' });
   const [openEmpModal, setOpenEmpModal] = useState(false);
   const [selectedEmployee, setSelectedEmployee] = useState(null);
+
   const tableColumns = [
-        ...columns,
-        {
-          title: "Actions",
-          render: (_, record) => (
-            <Space>
-              <Button
-                onClick={() => {
-                  setSelectedEmployee(record);
-                  setOpenEmpModal(true);
-                }}
-              >
-                Edit
-              </Button>
-              <DeleteButton onDelete={() => deleteEmployee(record.id)}/>
-            </Space>
-          ),
-        }
-    ];
+    ...columns,
+    {
+      title: "Active",
+      dataIndex: "isActive",
+      render: (isActive, record) => (
+        <Switch
+          size="medium"
+          checked={isActive}
+          checkedChildren="Yes"
+          unCheckedChildren="No"
+          onChange={(checked) =>
+            updateEmployee({ ...record, isActive: checked })
+          }
+        />
+      ),
+      filters: [
+        { text: "Active", value: true },
+        { text: "Inactive", value: false },
+      ],
+      onFilter: (value, record) => record.isActive === value,
+    },
+    {
+      title: "Actions",
+      render: (_, record) => (
+        <Space>
+          <Button
+            icon={<EditOutlined />}
+            size="small"
+            onClick={() => {
+              setSelectedEmployee(record);
+              setOpenEmpModal(true);
+            }}
+          >
+            Edit
+          </Button>
+          <DeleteButton onDelete={() => deleteEmployee(record.id)} />
+        </Space>
+      ),
+    },
+  ];
 
   const handleNameSearch = (value) =>
         setFilters((prev) => ({ ...prev, name: value }));
