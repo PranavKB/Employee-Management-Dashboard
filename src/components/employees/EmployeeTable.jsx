@@ -1,5 +1,5 @@
 import { Button, Card, Input, Space, Switch, Table } from "antd";
-import { useState } from "react";
+import { useMemo, useState } from "react";
 import { useEmployees } from "../../context/employee/useEmployees";
 import { columns } from "./tableColumns";
 import EmployeeForm from "./EmployeeForm";
@@ -8,7 +8,7 @@ import { EditOutlined } from "@ant-design/icons";
 
 const EmployeeTable = () => {
   const { employees, updateEmployee, deleteEmployee, addEmployee } = useEmployees();
-  const [filters, setFilters] = useState({ name: '' });
+  const [tableFilters, setTableFilters] = useState({ name: '' });
   const [openEmpModal, setOpenEmpModal] = useState(false);
   const [selectedEmployee, setSelectedEmployee] = useState(null);
 
@@ -55,19 +55,13 @@ const EmployeeTable = () => {
   ];
 
   const handleNameSearch = (value) =>
-        setFilters((prev) => ({ ...prev, name: value }));
+        setTableFilters((prev) => ({ ...prev, name: value }));
 
-  const fetchFilteredData = (data, filters) => {
-        let filteredData = [...data];
-
-        if (filters.name) {
-            filteredData = filteredData.filter((item) =>
-                item.fullName?.toLowerCase().includes(filters.name.toLowerCase())
-            );
-        }
-        
-        return filteredData;
-    };
+  const filteredEmployees = useMemo(() => {
+    return employees.filter((emp) =>
+      emp.fullName?.toLowerCase().includes(tableFilters.name.toLowerCase())
+    );
+  }, [employees, tableFilters.name]);
 
   const extraActions = () => {
     return (
@@ -78,6 +72,7 @@ const EmployeeTable = () => {
             onChange={(e) => handleNameSearch(e.target.value)}
         />
         <Button type="primary" style={{ marginLeft: 8 }}
+          disabled={openEmpModal}
           onClick={() => {
             setSelectedEmployee(null);
             setOpenEmpModal(true);
@@ -111,13 +106,14 @@ const EmployeeTable = () => {
         extra={extraActions()}
       >
           <Table rowKey="id" columns={tableColumns}
+            locale={{ emptyText: "No employees found" }}
             bordered size="small"
             scroll={{ x: 1500, y: 'calc(100vh - 350px)' }}
             pagination={{
                       showTotal: (total, range) =>
                           `${range[0]}-${range[1]} of ${total}`,
                   }}
-            dataSource={fetchFilteredData(employees, filters)} />
+            dataSource={filteredEmployees} />
       </Card>
       <EmployeeForm
             open={openEmpModal}
