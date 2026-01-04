@@ -1,7 +1,7 @@
 import { useNavigate } from "react-router-dom";
-import { useAuth } from "../context/AuthContext";
 import { LogoutOutlined, UserOutlined } from "@ant-design/icons";
 import { Avatar, Dropdown, Layout, Typography } from "antd";
+import { useAuth } from "../context/auth/useAuth";
 const { Header } = Layout;
 const { Title } = Typography;
 

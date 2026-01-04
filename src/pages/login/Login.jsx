@@ -1,8 +1,8 @@
 import { LockOutlined, UserOutlined } from "@ant-design/icons";
 import { Card, Form, Input, Button, Typography } from "antd";
 import './Login.css';
-import { useAuth } from "../../context/AuthContext";
 import { useNavigate } from "react-router-dom";
+import { useAuth } from "../../context/auth/useAuth";
 
 const { Title } = Typography;
 
