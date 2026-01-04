@@ -6,7 +6,7 @@ export const EmployeeProvider = ({ children }) => {
   const [employees, setEmployees] = useState([]);
 
   useEffect(() => {
-  fetch("https://randomuser.me/api/?results=20")
+  fetch("https://randomuser.me/api/?results=20&nat=in")
     .then(res => res.json())
     .then(data => {
       const employees = data.results.map(u => ({
@@ -17,7 +17,7 @@ export const EmployeeProvider = ({ children }) => {
         gender: u.gender,
         dob: u.dob.date,
         state: u.location.state,
-        isActive: Math.random() < 0.5
+        isActive: Math.random() < 0.6
       }));
       setEmployees(employees);
     });
