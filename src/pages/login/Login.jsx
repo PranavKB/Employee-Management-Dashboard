@@ -1,5 +1,5 @@
 import { LockOutlined, UserOutlined } from "@ant-design/icons";
-import { Card, Form, Input, Button, Typography } from "antd";
+import { Card, Form, Input, Button, Typography, App } from "antd";
 import './Login.css';
 import { useNavigate } from "react-router-dom";
 import { useAuth } from "../../context/auth/useAuth";
@@ -10,10 +10,16 @@ export const Login = () => {
 
   const { login } = useAuth();
   const navigate = useNavigate();
+  const { message } = App.useApp();
 
-  const onLogin = () => {
-    login();
-    navigate("/dashboard");
+  const onLogin = (values) => {
+    const { username, password } = values;
+    if (username === "admin" && password === "admin") {
+      login();
+      navigate("/dashboard");
+    } else {
+      message.error("Invalid username or password");
+    }
   };
 
   return (
