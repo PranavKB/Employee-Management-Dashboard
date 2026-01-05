@@ -5,7 +5,7 @@ It provides a **mock-authenticated** interface to view, create, update, and mana
 
 ---
 
-## 📚 Table of Contents
+## Table of Contents
 
 1. [Project Overview](#employee-management-dashboard)
 2. [Implemented Features](#implemented-features)
