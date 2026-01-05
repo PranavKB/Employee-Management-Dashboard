@@ -24,7 +24,35 @@ Implemented using Ant Design Table with the following columns:
 - **State**
 - **Active / Inactive status (toggle)**
 - **Actions:**
-- - **Edit**
-- - **Delete (with confirmation)**
+  - **Edit**
+  - **Delete (with confirmation)**
+
+### **Add / Edit Employee**
+**Single reusable modal form for Add & Edit**
+**Fields implemented:**
+- **Profile Image Upload**
+- **Full Name**
+- **Gender**
+- **Date of Birth**
+- **State (dropdown)**
+- **Active / Inactive toggle**
+**Features:**
+- **Image preview before saving**
+- **Form validations**
+- **Edit mode pre-fills existing data**
+
+### **Search & Filters**
+Search employees by name
+**Filter by:**
+- **Gender**
+- **Active / Inactive status**
+Search and filters work together
+
+### **Print Functionality**
+- **Print employee list using browser print**
+- **Prints only relevant table content**
+- **Prints same list when filter or sort is applied**
+
+
 
 
