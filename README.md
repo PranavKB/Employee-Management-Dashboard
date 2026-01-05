@@ -128,9 +128,9 @@ Implemented using **Ant Design Table** with the following columns:
    cd Employee-Management-Dashboard
 
 2. Install dependencies
-  ```
+   ```
    - npm install
-  ```
+   ```
 4. Start the development server
    ```
    - npm run dev
