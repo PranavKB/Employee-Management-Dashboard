@@ -137,4 +137,11 @@ Search employees by name
 
 <img width="913" height="410" alt="Screenshot 2026-01-05 104147" src="https://github.com/user-attachments/assets/a1cc2e86-99f1-4943-bc16-c61eb829a3dd" />
 
+- Add employee form image showing validations
+
+<img width="912" height="409" alt="Screenshot 2026-01-05 104119" src="https://github.com/user-attachments/assets/6fd6b5c8-6689-4644-9046-fefc10cfe174" />
+
+- Edit employee form image showing pre-filled details
+
+<img width="1917" height="911" alt="Screenshot 2026-01-05 104531" src="https://github.com/user-attachments/assets/781b8e43-a9cb-448e-bae0-44ab317fed2b" />
 
