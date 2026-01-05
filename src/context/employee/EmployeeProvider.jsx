@@ -11,7 +11,7 @@ export const EmployeeProvider = ({ children }) => {
   const { message } = App.useApp();
 
   useEffect(() => {
-    fetch("https://randomuser.me/api/?results=20&nat=in")
+    fetch("https://randomuser.me/api/?results=30&nat=in")
       .then((res) => res.json())
       .then((data) => {
         const mapped = data.results.map((u) => ({

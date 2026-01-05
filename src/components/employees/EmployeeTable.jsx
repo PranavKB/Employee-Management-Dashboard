@@ -120,7 +120,7 @@ const EmployeeTable = () => {
           ...values,
           id: crypto.randomUUID(),
           employeeId: `EMP${Math.floor(1000 + Math.random() * 9000)}`,
-          profileImage: null,
+          profileImage: values.profileImage || null,
         });
       }
   }
