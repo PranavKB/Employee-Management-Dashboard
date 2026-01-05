@@ -1,108 +1,146 @@
 # Employee Management Dashboard
 
-Employee Management Dashboard is a front-end application that provides an interface to view, create, update, and manage employee information. It is structured as a single-page application (SPA) served by Vite. It provides a secure (mock-authenticated) interface to manage employee records with features such as listing, searching, filtering, editing, deleting, and printing employee data.
+Employee Management Dashboard is a front-end single-page application (SPA) built using **React.js and Vite**.  
+It provides a **mock-authenticated** interface to view, create, update, and manage employee information with features such as listing, searching, filtering, editing, deleting, and printing employee data.
 
 ---
 
-## **Implemented Features**
+## 📚 Table of Contents
 
-### **Authentication (Mock)**
-- **Simple login screen**
-- **Authentication state stored in local storage**
-- **Users cannot access the dashboard without logging in**
-- **Redirects to dashboard after successful login**
+1. [Project Overview](#employee-management-dashboard)
+2. [Implemented Features](#implemented-features)
+   - [Authentication (Mock)](#authentication-mock)
+   - [Dashboard Summary](#dashboard-summary)
+   - [Employee Table](#employee-table)
+   - [Add / Edit Employee](#add--edit-employee)
+   - [Search & Filters](#search--filters)
+   - [Print Functionality](#print-functionality)
+3. [Tech Stack & Dependencies](#tech-stack--dependencies)
+4. [Prerequisites](#prerequisites)
+5. [Steps to Run the Project Locally](#steps-to-run-the-project-locally)
+6. [Project Structure](#project-structure-high-level)
+7. [Assumptions & Design Decisions](#assumptions--design-decisions)
+8. [Mock Data Source](#mock-data-source)
+9. [Screenshots](#screenshots)
 
-### **Dashboard Summary**
-- **Displays total number of employees**
-- **Data updates dynamically when employees are added or removed**
+---
 
-### **Employee Table**
-Implemented using Ant Design Table with the following columns:
-- **Employee ID**
-- **Profile Image (avatar)**
-- **Full Name**
-- **Gender**
-- **Date of Birth**
-- **State**
-- **Active / Inactive status (toggle)**
-- **Actions:**
-  - **Edit**
-  - **Delete (with confirmation)**
+## Implemented Features
 
-### **Add / Edit Employee**
-**Single reusable modal form for Add & Edit**
+### Authentication (Mock)
+- Simple login screen
+- Authentication state stored in local storage
+- Users cannot access the dashboard without logging in
+- Redirects to dashboard after successful login
+
+---
+
+### Dashboard Summary
+- Displays total number of employees
+- Data updates dynamically when employees are added or removed
+
+---
+
+### Employee Table
+Implemented using **Ant Design Table** with the following columns:
+- Employee ID
+- Profile Image (avatar)
+- Full Name
+- Gender
+- Date of Birth
+- State
+- Active / Inactive status (toggle)
+- Actions:
+  - Edit
+  - Delete (with confirmation)
+
+---
+
+### Add / Edit Employee
+- Single reusable modal form for Add & Edit
+
 **Fields implemented:**
-- **Profile Image Upload**
-- **Full Name**
-- **Gender**
-- **Date of Birth**
-- **State (dropdown)**
-- **Active / Inactive toggle**
-**Features:**
-- **Image preview before saving**
-- **Form validations**
-- **Edit mode pre-fills existing data**
+- Profile Image upload
+- Full Name
+- Gender
+- Date of Birth
+- State (dropdown)
+- Active / Inactive toggle
 
-### **Search & Filters**
-Search employees by name
-**Filter by:**
-- **Gender**
-- **Active / Inactive status**
+**Features:**
+- Image preview before saving
+- Form validations
+- Edit mode pre-fills existing data
+
+---
+
+### Search & Filters
+- Search employees by name
+- Filter by:
+  - Gender
+  - Active / Inactive status
 - Search and filters work together
 
-### **Print Functionality**
-- **Print employee list using browser print**
-- **Prints only relevant table content**
-- **Prints same list when filter or sort is applied**
+---
+
+### Print Functionality
+- Print employee list using browser print
+- Prints only relevant table content
+- Prints the same list when filters or sorting are applied
 
 ---
 
-## Tech stack & dependencies
+## Tech Stack & Dependencies
 
-- **React.js (JavaScript)**
-- **Ant Design (antd)**
-- **React Hooks**
-- **React Router**
-- **Local State / Context**
-- **Browser Print API**
+### Core
+- React.js (JavaScript)
+- Ant Design (antd)
+- React Hooks
+- React Router
+- Browser Print API
 
-### Runtime
-- Vite — fast dev server 
-- Node.js / npm — package manager and runtime for dev/build
+### Runtime & Tooling
+- Vite — fast development server and build tool
+- Node.js / npm — runtime and package manager
 
-### Primary libraries (from package.json `dependencies`)
-- @ant-design/icons: ^6.1.0
-- antd: ^6.1.3
-- dayjs: ^1.11.19
-- react: ^19.2.0
-- react-dom: ^19.2.0
-- react-router-dom: ^7.11.0
+### Primary Libraries (`dependencies`)
+- `@ant-design/icons`: ^6.1.0
+- `antd`: ^6.1.3
+- `dayjs`: ^1.11.19
+- `react`: ^19.2.0
+- `react-dom`: ^19.2.0
+- `react-router-dom`: ^7.11.0
 
 ---
 
 ## Prerequisites
-- Node.js (recommend LTS v18 or later)
+- Node.js (recommended LTS v18 or later)
 - npm (comes with Node.js)
 - Git (optional, for cloning)
 
 ---
 
-## Steps to run the project locally
+## Steps to Run the Project Locally
 
-1. Clone the repository
-   - git clone https://github.com/PranavKB/Employee-Management-Dashboard.git
-   - cd Employee-Management-Dashboard
+1. Clone the repository:
+   ```bash
+   git clone https://github.com/PranavKB/Employee-Management-Dashboard.git
+   cd Employee-Management-Dashboard
 
 2. Install dependencies
+  ```
    - npm install
-
-3. Start the development server
+  ```
+4. Start the development server
+   ```
    - npm run dev
+   ```
    - Open the URL printed by Vite (commonly http://localhost:5173)
 
-4. Lint the code
+6. Lint the code
+   ```
    - npm run lint
-  
+   ```  
 ---
 
 ## Project structure (high level)
@@ -129,6 +167,15 @@ Search employees by name
    - No global state manager is used; component-level state (React hooks) and context are expected to be sufficient. If the application grows, Redux/RTK or another state solution can be used.
 
 ---
+### Mock Data Source
+
+Employee data is generated using the public API:
+https://randomuser.me/api/?results=30&nat=in
+
+- Used only for development and demonstration purposes
+- Generates realistic Indian user profiles (name, gender, DOB, profile image)
+  
+---
 ## Screenshots
 - Dashboard image for reference
 
@@ -140,5 +187,9 @@ Search employees by name
 
 - Edit employee form image showing pre-filled details
 
-<img width="1917" height="911" alt="Screenshot 2026-01-05 104531" src="https://github.com/user-attachments/assets/781b8e43-a9cb-448e-bae0-44ab317fed2b" />
+<img width="917" height="411" alt="Screenshot 2026-01-05 104531" src="https://github.com/user-attachments/assets/781b8e43-a9cb-448e-bae0-44ab317fed2b" />
+
+- Delete confirmation pop up
+
+<img width="918" height="410" alt="Screenshot 2026-01-05 104207" src="https://github.com/user-attachments/assets/86dc25f2-0bbc-4f0e-a8be-c7ccd1aafad2" />
 
