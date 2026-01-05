@@ -106,7 +106,7 @@ Search employees by name
 4. Lint the code
    - npm run lint
   
---
+---
 
 ## Project structure (high level)
 
@@ -117,7 +117,7 @@ Search employees by name
 - public/            
 - src/               — source code (components, pages)
 
---
+---
 
 ## Assumptions & design decisions
 
@@ -130,4 +130,11 @@ Search employees by name
   
 3. State management
    - No global state manager is used; component-level state (React hooks) and context are expected to be sufficient. If the application grows, Redux/RTK or another state solution can be used.
+
+---
+## Screenshots
+- Dashboard image for reference
+
+<img width="913" height="410" alt="Screenshot 2026-01-05 104147" src="https://github.com/user-attachments/assets/a1cc2e86-99f1-4943-bc16-c61eb829a3dd" />
+
 
