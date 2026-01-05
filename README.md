@@ -57,7 +57,8 @@ Search employees by name
 
 ---
 
-## **Implemented Features**
+## Tech stack & dependencies
+
 - **React.js (JavaScript)**
 - **Ant Design (antd)**
 - **React Hooks**
@@ -65,12 +66,8 @@ Search employees by name
 - **Local State / Context**
 - **Browser Print API**
 
----
-
-## Tech stack & dependencies
-
-### Runtime / build
-- Vite — fast dev server & build tool
+### Runtime
+- Vite — fast dev server 
 - Node.js / npm — package manager and runtime for dev/build
 
 ### Primary libraries (from package.json `dependencies`)
