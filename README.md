@@ -140,7 +140,10 @@ Implemented using **Ant Design Table** with the following columns:
 6. Lint the code
    ```
    - npm run lint
-   ```  
+   ```
+7. End points
+   - For login (http://localhost:5173/login)
+   - For dashboard (http://localhost:5173/dashboard)
 ---
 
 ## Project structure
