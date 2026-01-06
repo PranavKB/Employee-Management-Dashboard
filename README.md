@@ -143,7 +143,7 @@ Implemented using **Ant Design Table** with the following columns:
    ```  
 ---
 
-## Project structure (high level)
+## Project structure
 
 - index.html
 - package.json
@@ -177,6 +177,10 @@ https://randomuser.me/api/?results=30&nat=in
   
 ---
 ## Screenshots
+- Simple login page
+
+<img width="913" height="409" alt="Screenshot 2026-01-05 143730" src="https://github.com/user-attachments/assets/95ec441c-d64e-4266-a8ae-2ee21c57f8c1" />
+  
 - Dashboard image for reference
 
 <img width="913" height="410" alt="Screenshot 2026-01-05 104147" src="https://github.com/user-attachments/assets/a1cc2e86-99f1-4943-bc16-c61eb829a3dd" />
